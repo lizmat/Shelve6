@@ -1,21 +1,36 @@
 {
-    "perl": "6.c",
-    "name": "Shelve6",
-    "version": "0.2",
-    "description": "Artifact repository for Perl 6 and friends",
-    "authors": [
-        "Robert Lemmen",
-        "Elizabeth Mattijsen"
-    ],
-    "depends": [
-        "Cro::HTTP:ver<0.8.6>",
-        "JSON::Fast:ver<0.16>",
-        "YAMLish:ver<0.0.6>"
-    ],
-    "test-depends": [
-        "Test::META"
-    ],
-    "provides": {},
-    "license": "Artistic-2.0",
-    "source-url": "https://github.com/lizmat/Shelve6.git"
+  "auth": "zef:lizmat",
+  "authors": [
+    "Robert Lemmen",
+    "Elizabeth Mattijsen"
+  ],
+  "build-depends": [
+  ],
+  "depends": [
+    "Cro::HTTP:ver<0.8.6>",
+    "JSON::Fast:ver<0.16>",
+    "YAMLish:ver<0.0.6>"
+  ],
+  "description": "Artifact repository for Perl 6 and friends",
+  "license": "Artistic-2.0",
+  "name": "Shelve6::Store",
+  "perl": "6.c",
+  "provides": {
+    "Shelve6::AuthInfo": "lib/Shelve6/AuthInfo.rakumod",
+    "Shelve6::Config": "lib/Shelve6/Config.rakumod",
+    "Shelve6::Logging": "lib/Shelve6/Logging.rakumod",
+    "Shelve6::Repository": "lib/Shelve6/Repository.rakumod",
+    "Shelve6::Server": "lib/Shelve6/Server.rakumod",
+    "Shelve6::Store": "lib/Shelve6/Store.rakumod",
+    "X::Shelve6::ClientError": "lib/X/Shelve6/ClientError.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "https://github.com/lizmat/Shelve6.git",
+  "tags": [
+  ],
+  "test-depends": [
+    "Test::META"
+  ],
+  "version": "0.3.0"
 }
