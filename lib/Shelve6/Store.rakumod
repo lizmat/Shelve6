@@ -1,7 +1,7 @@
-use Shelve6::Logging;
-use X::Shelve6::ClientError;
+use Shelve6::Logging:ver<0.3.0>:auth<zef:lizmat>;
+use X::Shelve6::ClientError:ver<0.3.0>:auth<zef:lizmat>;
 
-unit class Shelve6::Store;
+unit class Shelve6::Store:ver<0.3.0>:auth<zef:lizmat>;
 
 has $.basedir;
 

@@ -4,17 +4,18 @@
     "version": "0.2",
     "description": "Artifact repository for Perl 6 and friends",
     "authors": [
-        "Robert Lemmen <robertle@semistable.com>"
+        "Robert Lemmen",
+        "Elizabeth Mattijsen"
     ],
     "depends": [
-        "Cro::HTTP",
-        "JSON::Fast",
-        "YAMLish"
+        "Cro::HTTP:ver<0.8.6>",
+        "JSON::Fast:ver<0.16>",
+        "YAMLish:ver<0.0.6>"
     ],
     "test-depends": [
         "Test::META"
     ],
     "provides": {},
     "license": "Artistic-2.0",
-    "source-url": "git://github.com/robertlemmen/svc-shelve6.git"
+    "source-url": "https://github.com/lizmat/Shelve6.git"
 }

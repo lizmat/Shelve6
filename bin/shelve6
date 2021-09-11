@@ -30,7 +30,7 @@ sub MAIN(Str :$config-file = 'config.yaml') {
 
     $log.info("Application initialization complete!");
 
-    signal(SIGINT).tap: {
+    react whenever signal(SIGINT) {
         $log.debug("Shutting down components...");
         $server.stop;
         for @repositories { .stop }
@@ -38,6 +38,4 @@ sub MAIN(Str :$config-file = 'config.yaml') {
         $log.info("Clean shutdown, see you later!");
         exit;
     }
-
-    sleep;
 }

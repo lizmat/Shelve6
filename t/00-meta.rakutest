@@ -5,4 +5,4 @@ plan 1;
 
 meta-ok();
 
-done-testing;
+# vim: expandtab shiftwidth=4

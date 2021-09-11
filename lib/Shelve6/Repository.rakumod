@@ -1,12 +1,12 @@
 use Cro::HTTP::Response;
-use JSON::Fast;
+use JSON::Fast:ver<0.16>;
 
-use Shelve6::Logging;
-use Shelve6::Server;
-use Shelve6::Store;
-use X::Shelve6::ClientError;
+use Shelve6::Logging:ver<0.3.0>:auth<zef:lizmat>;
+use Shelve6::Server:ver<0.3.0>:auth<zef:lizmat>;
+use Shelve6::Store:ver<0.3.0>:auth<zef:lizmat>;
+use X::Shelve6::ClientError:ver<0.3.0>:auth<zef:lizmat>;
 
-unit class Shelve6::Repository;
+unit class Shelve6::Repository:ver<0.3.0>:auth<zef:lizmat>;
 
 has $.name;
 has $.authorization;

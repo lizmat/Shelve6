@@ -1,13 +1,12 @@
 use Cro::HTTP::Router;
 use Cro::HTTP::Server;
-use JSON::Fast;
+use JSON::Fast:ver<0.16>;
 
-use Shelve6::Logging;
-use Shelve6::AuthInfo;
+use Shelve6::Logging:ver<0.3.0>:auth<zef:lizmat>;
+use Shelve6::AuthInfo:ver<0.3.0>:auth<zef:lizmat>;
+use X::Shelve6::ClientError:ver<0.3.0>:auth<zef:lizmat>;
 
-use X::Shelve6::ClientError;
-
-unit class Shelve6::Server;
+unit class Shelve6::Server:ver<0.3.0>:auth<zef:lizmat>;
 
 has $.port;
 has $.base-url;

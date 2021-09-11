@@ -1,4 +1,4 @@
-unit class Shelve6::Logging;
+unit class Shelve6::Logging:ver<0.3.0>:auth<zef:lizmat>;
 
 has $.ctx;
 
