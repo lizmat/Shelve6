@@ -1,9 +1,9 @@
-[![Actions Status](https://github.com/lizmat/Shelve6/workflows/test/badge.svg)](https://github.com/lizmat/Shelve6/actions)
+[![Actions Status](https://github.com/lizmat/Shelved/workflows/test/badge.svg)](https://github.com/lizmat/Shelved/actions)
 
 NAME
 ====
 
-Shelve6
+Shelved
 
 DESCRIPTION
 ===========
@@ -44,11 +44,11 @@ Upcoming and ToDo
 
   * Verification and other plugins
 
-  * Shared file store, multiple shelve6 instances. Or a database as a store.
+  * Shared file store, multiple shelved instances. Or a database as a store.
 
   * More auth types
 
-  * Full-blown monitoring, resilience etc 
+  * Full-blown monitoring, resilience etc
 
   * More metadata, like when uploaded and by whom. "on-behalf" in upload script so that a CI or automation job can say on whose command they uploaded
 
@@ -57,7 +57,7 @@ Also grep for the `XXX` fixmes in the code!
 USAGE
 =====
 
-Shelve6 comes as a web service that you can just start e.g. directly from the checked-out source repository via `RAKUDOLIB=lib bin/shelve6`, or if it is properly installed just via `shelve6`. It reads a config.yaml file, a simple sample is included, and might look like this:
+Shelved comes as a web service that you can just start e.g. directly from the checked-out source repository via `RAKUDOLIB=lib bin/shelved`, or if it is properly installed just via `shelved`. It reads a config.yaml file, a simple sample is included, and might look like this:
 
 ```yaml
     server:
@@ -85,9 +85,9 @@ is a directory where shleve6 will store the artifacts.
 
 is a list of logical artifact repositories in which you can store modules.
 
-With the service running, you can use the supplied shelve6-upload script to put artifacts into shelve6:
+With the service running, you can use the supplied shelved-upload script to put artifacts into shelved:
 
-    bin/shelve6-upload raku-foo-bar-0.1.tar.gz http://localhost:8080/repos/p6repo
+    bin/shelved-upload raku-foo-bar-0.1.tar.gz http://localhost:8080/repos/p6repo
 
 This script is just a thin wrapper around `curl`, you just need a multipart form post really.
 
@@ -95,11 +95,11 @@ In order to fetch artifacts, you need to configure your `zef` to recognise the r
 
 ```json
     {
-        "short-name" : "shelve6",
+        "short-name" : "shelved",
         "enabled" : 1,
         "module" : "Zef::Repository::Ecosystems",
         "options" : {
-            "name" : "shelve6",
+            "name" : "shelved",
             "auto-update" : 1,
             "mirrors" : [
                 "http://localhost:8080/repos/p6repo/packages.json"
@@ -108,12 +108,12 @@ In order to fetch artifacts, you need to configure your `zef` to recognise the r
     },
 ```
 
-After that, `zef` happily pulls from shelve6!
+After that, `zef` happily pulls from shelved!
 
 AUTHENTICATION / AUTHORIZATION
 ==============================
 
-If you want to use the repository for private code, it may be a good idea to enable some security on it. Shelve6 can use credentials in the request and map them to a set of roles associated with that credential. Currently the only credential type supported are 'opaque' tokens, these are just striings that are not looked into (so not JWT or so). These come in a HTTP header like `Authorization: Bearer supersecret`, where 'supersecret' is the credential. In the future more credential types can be supported. To configure the mapping of credentials to roles, extend the 'server' part of the configuration:
+If you want to use the repository for private code, it may be a good idea to enable some security on it. Shelved can use credentials in the request and map them to a set of roles associated with that credential. Currently the only credential type supported are 'opaque' tokens, these are just striings that are not looked into (so not JWT or so). These come in a HTTP header like `Authorization: Bearer supersecret`, where 'supersecret' is the credential. In the future more credential types can be supported. To configure the mapping of credentials to roles, extend the 'server' part of the configuration:
 
 ```yaml
 server:
@@ -142,7 +142,7 @@ repositories:
 
 Note that the credential is associated with all the roles from the server config, but any role in the repository section is sufficient for access to be granted. For example the credential 'eng8ahquia2kungeitaequie' above gives both the 'DEV' and the 'ADMIN' roles, any of which would be enough to upload and download artifacts.
 
-The `shelve6-upload` script supports setting these tokens through a commandline argument or an environment variable.
+The `shelved-upload` script supports setting these tokens through a commandline argument or an environment variable.
 
 In order to enable `zef` to provide credentials during module fetching, you need to install the `Zef::Service::AuthenticatedDownload` plugin:
 
@@ -154,7 +154,7 @@ And configure it. The `zef` README explains where you can find the zef config, w
         {
             "short-name" : "authenticated-download",
             "module" : "Zef::Service::AuthenticatedDownload",
-            "options" : { 
+            "options" : {
                 "configured-hosts" : [
                     {
                         "hostname" : "localhost",
@@ -173,7 +173,9 @@ AUTHORS
 
 Robert Lemmen (2018-2020), Elizabeth Mattijsen <liz@raku.rocks> (2021-)
 
-Source can be located at: https://github.com/lizmat/ReadWriteLock . Comments and Pull Requests are welcome.
+Originally developed as `Shelve6` by Robert Lemmen, maintenance taken over and renamed to `Shelved` by Elizabeth Mattijsen. The rename was deemed to make sense in the context of the Raku Programming Language (which has no special meaning for the number 6) and the fact that this module usually runs as a daemon (hence the "d" at the end).
+
+Source can be located at: https://github.com/lizmat/Shelved . Comments and Pull Requests are welcome.
 
 COPYRIGHT AND LICENSE
 =====================

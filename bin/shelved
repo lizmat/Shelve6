@@ -1,25 +1,21 @@
 #!/usr/bin/env raku
 
-use Shelve6::Logging;
-use Shelve6::Config;
-use Shelve6::Server;
-use Shelve6::Store;
-use Shelve6::Repository;
+use Shelved;
 
-my $log = Shelve6::Logging.new('main');
+my $log := Shelved::Logging.new('main');
 
 sub MAIN(Str :$config-file = 'config.yaml') {
-    $log.info("Shelve6 starting...");
+    $log.info("Shelved starting...");
     $log.debug("Reading configuration from $config-file...");
     # XXX validate top level keys and that the top is a hash, and that repositories
     # is a list
     my %config = load-config($config-file);
 
-    my $store = Shelve6::Store.new(|%config<store>);
-    my $server = Shelve6::Server.new(|%config<server>);
+    my $store  := Shelved::Store.new(|%config<store>);
+    my $server := Shelved::Server.new(|%config<server>);
     my @repositories;
     for @(%config<repositories>) -> $repo {
-        my $repo-object = Shelve6::Repository.new(:$server, :$store, |%($repo));
+        my $repo-object := Shelved::Repository.new(:$server, :$store, |%($repo));
         push @repositories, $repo-object;
     }
 
